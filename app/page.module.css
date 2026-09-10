@@ -1,0 +1,82 @@
+.hero {
+  max-width: 1440px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.description {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.button {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--white) ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:var(--blue);
+  border-radius: 12px;
+  padding: 12px 99px;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--blue-accent);
+}
+
+.link {
+  width: 200px;
+  margin: 0 auto;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.link:hover,
+.link:focus {
+  background-color: var(--blue-accent);
+}
