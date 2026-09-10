@@ -1,8 +1,12 @@
 .hero {
-  max-width: 1440px;
-  height: 700px;
-  margin: 0 auto;
+  width: 100%;
+  min-width: 320px;
+  min-height: calc(100dvh - 68px);
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .overlay {
@@ -13,11 +17,11 @@
 }
 
 .content {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 60px;
   position: relative;
   z-index: 2;
@@ -42,28 +46,6 @@
 }
 
 .button {
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--white) ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color:var(--blue);
-  border-radius: 12px;
-  padding: 12px 99px;
-}
-
-.button:hover,
-.button:focus {
-  background-color: var(--blue-accent);
-}
-
-.link {
-  width: 200px;
-  margin: 0 auto;
-  text-decoration: none;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
@@ -73,10 +55,11 @@
   justify-content: center;
   background-color: var(--blue);
   border-radius: 12px;
-  padding: 12px;
+  padding: 12px 99px;
+  transition: background-color 0.2s ease;
 }
 
-.link:hover,
-.link:focus {
+.button:hover,
+.button:focus {
   background-color: var(--blue-accent);
 }
