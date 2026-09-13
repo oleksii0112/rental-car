@@ -17,7 +17,7 @@ html {
 html,
 body {
   color: var(--deep-blue);
-  background: var(--white);
+  background: var(--background-grey);
 }
 
 body {
@@ -52,6 +52,7 @@ button {
   margin: 0;
   padding: 0;
   cursor: pointer;
+  border: none;
 }
 
 input,

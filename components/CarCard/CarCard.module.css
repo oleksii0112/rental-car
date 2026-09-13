@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 276px;
   height: 464px;
-  display: flex;
   padding: 16px;
   border-radius: 16px;
   background: var(--white);
@@ -79,7 +78,7 @@
   transform: translateY(-50%);
   width: 1px;
   height: 16px;
-  background-color: #dadde1;
+  background-color: var(--grey-accent);
 }
 
 .link {

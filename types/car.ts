@@ -46,3 +46,12 @@ export interface BookingCarParams {
   email: string;
   comment?: string;
 }
+
+
+export interface CarsFiltersResponse {
+  brands: string[];
+  price: {
+    min: number;
+    max: number;
+  };
+}

@@ -72,7 +72,7 @@
   
 }
 
-.is-active {
+.isActive {
   text-decoration: underline;
   text-decoration-skip-ink: none;
   color: var(--blue);

@@ -4,13 +4,14 @@
     flex-direction: column;
     gap: 40px;
     align-items: center;
-    position: relative;
     overflow: hidden;
+  margin: auto;
 }
 
 .imgWrapper {
     width: 413px;
-    height: 388px;    
+    height: 388px;  
+    position: relative;  
 }
 
 .contentWrapper {
@@ -27,26 +28,27 @@ line-height: 1.33333;
 }
 
 .description {
+    text-align: center;
+     max-width: 351px;
   font-weight: 500;
 font-size: 16px;
 line-height: 1.25;  
 }
 
 .reset {
-  color: var(--white);
+  width: fit-content;
+  margin: 0 auto;
+  padding: 11px 37px;
+  background-color: transparent;
+  border: 1px solid var(--blue);
+  border-radius: 12px;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 81px;
-  background-color: var(--blue);
-  border-radius: 12px;
-   transition: background-color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .reset:hover,
 .reset:focus {
-  background-color: var(--blue-accent);
+  border-color: var(--blue-accent);
 }

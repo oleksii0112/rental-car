@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Car, CarsServerResponse, CarsQueryParams, BookingCarParams } from "@/types/car"
+import { Car, CarsServerResponse, CarsQueryParams, BookingCarParams,   CarsFiltersResponse } from "@/types/car"
 
 interface BookingResponse {
     message: string
@@ -38,3 +38,10 @@ export const createBookingRequest = async (
   );
   return response.data;
 };
+
+export const fetchFilters = async (): Promise<CarsFiltersResponse> => {
+  const response = await axios.get<CarsFiltersResponse>(`${BASE_URL}/cars/filters`, {
+    headers,}
+  );
+  return response.data
+}
