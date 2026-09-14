@@ -44,7 +44,7 @@ export interface CarsServerResponse {
 export interface BookingCarParams {
   name: string;
   email: string;
-  comment?: string;
+  comment: string;
 }
 
 

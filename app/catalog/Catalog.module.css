@@ -1,21 +1,23 @@
 .catalog {
-  width: 100%;
-  margin: 60px 0 114px;
-  display: flex;
-  flex-direction: column;
-  gap: 44px;
+    width: 100%;
+    margin: 60px 0 114px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px
 }
 
 .listWrapper {
-  width: 1200px;
-  margin: 0 auto;
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 48px 32px;
-}
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px 32px;
+} 
+
 
 .loadMore {
   position: relative;
