@@ -12,7 +12,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rentalcar.com"),
+  metadataBase: new URL("https://rental-car-alpha-red.vercel.app"),
   title: "Rental Car",
   description: "You can easily rent your best matching car here!",
   openGraph: {

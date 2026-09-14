@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RentalCar
 
-## Getting Started
+> Каталог оренди автомобілів — переглядайте, фільтруйте та бронюйте авто онлайн.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16.3.4-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19.2.8-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
+![TanStack Query](https://img.shields.io/badge/TanStack%20Query-v5-FF4154?logo=reactquery&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Home page](./docs/screenshots/home.png)
+
+**🔗 Живий сайт:** [rental-car-alpha-red.vercel.app](https://rental-car-alpha-red.vercel.app/)
+
+## Про проєкт
+
+RentalCar — це невеликий вебсайт для оренди автомобілів, що включає маркетингову головну сторінку, каталог авто з фільтрацією та пагінацією типу «нескінченний скрол», а також сторінку з детальною інформацією про конкретний автомобіль і формою запиту на бронювання.
+
+Проєкт виконаний як дипломна робота магістерського курсу з Next.js — за фіксованим технічним завданням і макетом Figma.
+
+## Функціональні можливості
+
+- **Фільтрація на стороні сервера (backend-driven)** — бренд, максимальна ціна та діапазон пробігу передаються як параметри запиту до API під час кожного пошуку; фільтрація не виконується на клієнті з уже завантаженого списку. Стан фільтрів зберігається в URL (через `useSearchParams`/`useRouter`), а не у стані компонента, тому відфільтрований вигляд зберігається після оновлення сторінки, переходу за посиланням або натискання кнопки «Назад» у браузері.
+- **Каталог із нескінченною прокруткою** — пагінація реалізована через `useInfiniteQuery` (TanStack Query v5) та кнопку «Load more»; запити прив'язані до активних фільтрів, завдяки чому контекст фільтрації не втрачається і не змішується під час завантаження нових сторінок.
+- **Єдиний інтерфейс завантаження** для всіх асинхронних станів каталогу — перше завантаження, зміна фільтрів, «Load more» та повторний пошук після порожнього результату використовують один і той самий оверлей (`RefetchOverlay`), що керується єдиним прапорцем `isFetching` замість чотирьох окремих станів завантаження.
+- **Кастомний інтерфейс замість стандартних рішень** — власноруч створений анімований індикатор завантаження (колесо, що обертається, та рухома дорога в кольорах бренду), кастомні випадаючі списки (нативні `<select>` неможливо стилізувати відповідно до макетів Figma, тому їх створено з нуля з підтримкою клавіатури й закриттям при кліку поза межами елемента) та SVG-спрайт іконок замість залежності від сторонньої бібліотеки.
+- **Форма бронювання з адаптивною версткою** — Formik + Yup; коли в полі виникає помилка (плаваюча червона мітка, вбудована іконка, повідомлення), збільшується простір лише цього конкретного поля, а решта форми та її вирівнювання відносно сусідньої інформаційної панелі залишаються незмінними.
+- **Розумна кнопка повернення вгору** — з'являється після прокручування значної частини каталогу незалежно від кількості сторінок, завантажених через «Load more», тому не зникає і не мерехтить щоразу, коли додаються нові автомобілі.
+- **SEO-метадані для кожного маршруту** — статичні метадані для `/` та `/catalog`, і динамічна генерація (`generateMetadata`) для сторінки автомобіля (title, description, Open Graph, Twitter card будуються з реальних даних про авто); запити даних дедуплікуються через `cache()` з React, щоб генерація метаданих і рендеринг сторінки не подвоювали мережеві запити.
+- **Пріоритет серверного рендерингу там, де це виправдано** — сторінка деталей автомобіля реалізована як Server Component, що отримує дані напряму (без клієнтського індикатора завантаження для контенту, якому це не потрібно); лише форма бронювання — справді інтерактивна частина — постачається як клієнтський JavaScript.
+
+## Технологічний стек
+
+| Шар | Технологія |
+|---|---|
+| Фреймворк | Next.js 16.3.4 (App Router) |
+| Мова | TypeScript (strict) |
+| UI | React 19.2.8 + React Compiler |
+| Стилі | CSS Modules |
+| Серверний стан | TanStack Query v5 (`useInfiniteQuery`) |
+| Форми | Formik + Yup |
+| HTTP | Axios |
+| Сповіщення | react-hot-toast |
+| Іконки | Власноруч зроблений SVG-спрайт (`public/sprite.svg`) |
+
+## Скріншоти
+
+**Каталог**
+![Catalog page](./docs/screenshots/catalog.png)
+
+**Фільтр за брендом**
+![Brand filter dropdown](./docs/screenshots/catalog-brand-filter.png)
+
+**Фільтр за ціною**
+![Price filter dropdown](./docs/screenshots/catalog-price-filter.png)
+
+**Пагінація «Load more»**
+![Load more pagination](./docs/screenshots/catalog-load-more.png)
+
+**Сторінка автомобіля — фото, форма бронювання та повна інформація**
+![Car details page](./docs/screenshots/car-details.png)
+
+## Архітектура
+
+```
+app/
+├─ page.tsx                    Home — статична маркетингова сторінка (Server Component)
+├─ layout.tsx                  Кореневий layout: шрифти, metadata, TanStack provider, toast portal
+├─ not-found.tsx                Спільна 404-сторінка (автоматично для будь-якого notFound())
+├─ catalog/
+│  ├─ page.tsx                 Тонка серверна обгортка (Suspense-межа для useSearchParams)
+│  └─ Catalog.client.tsx        Уся логіка каталогу — фільтри, infinite query, рендер списку
+└─ catalog/[id]/
+   └─ page.tsx                 Server Component: фетч авто, generateMetadata, обробка 404,
+                                рендерить CarDetails (server) + BookingForm (client) поруч
+
+components/
+├─ CarCard, CarDetails, Header, EmptyError, Loader, RefetchOverlay, ScrollToTop   → Server/презентаційні
+├─ FilterForm (+ CustomSelect), BookForm/BookingForm                              → Client (форми, події)
+└─ TanStackProvider                                                              → Client (QueryClientProvider)
+
+lib/api.ts       — усі запити до API в одному місці (fetchCars, fetchCarById, fetchFilters, createBookingRequest)
+types/car.ts     — спільні типи, що відповідають контракту API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Правило, що визначає, чи компонент серверний, чи клієнтський, — **звідки беруться його дані**. Якщо власні дані компонента надходять із клієнтського хука (`useInfiniteQuery`, `useSearchParams`), усі залежні від нього компоненти теж мають бути клієнтськими — тому вся сторінка `/catalog` є єдиним деревом клієнтських компонентів. Якщо дані отримуються через звичайний серверний `await`, компонент за замовчуванням лишається серверним — тому сторінка деталей рендериться на сервері, за винятком єдиного елемента, що потребує реальної інтерактивності (форми бронювання).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Чому на сторінці деталей немає SSR data-prefetch
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+TanStack Query підтримує попередню вибірку запиту на сервері з подальшою гідрацією в кеш клієнта (`dehydrate`/`HydrationBoundary`), що може покращити перше відображення для клієнтських даних. Цей проєкт свідомо не використовує цей підхід ніде — і це варто пояснити, а не залишати непоміченим:
 
-## Learn More
+- **Сторінці деталей це взагалі не потрібно** — це звичайний Server Component із прямим `await fetchCarById(id)`. Це вже швидше й простіше за «попередня вибірка → гідрація»: немає клієнтського бандла заради фетчу, немає кроку гідрації, немає ризику розсинхронізації між попередньо завантаженим і повторно запитаним станом.
+- **Сторінка каталогу технічно могла б** використовувати SSR-попередню вибірку, щоб перший рендер приходив уже заповненим, але вигода вузька: зміна фільтрів і «Load more» все одно керуються клієнтом незалежно від цього (змінюється URL → змінюється query key → TanStack сам перезапитує) — попередня вибірка допомогла б лише першому запиту, а не пагінації чи фільтрації, які й становлять реальний UX. Додавання серверного `QueryClient`, допоміжної кеш-функції та дубльованого парсингу фільтрів (один раз для `searchParams` на сервері, один раз для `useSearchParams()` на клієнті — і вони мають лишатися синхронізованими) — це реальна, постійна складність заради одноразового виграшу в швидкості першого відображення.
+- Тому це був свідомий компроміс на користь простішої, зручнішої в підтримці кодової бази в стислі терміни, а не недогляд. Ментор курсу підтвердив, що обидва підходи прийнятні — головна вимога ТЗ (використання `useInfiniteQuery`) виконана.
 
-To learn more about Next.js, take a look at the following resources:
+## Початок роботи
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Відкрий http://localhost:3000.
 
-## Deploy on Vercel
+```bash
+npm run build    # продакшн-білд — заразом і type-check gate проєкту
+npm run start    # запуск продакшн-білда локально
+npm run lint     # ESLint
+npx tsc --noEmit # лише перевірка типів, без білда
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Для локального запуску не потрібно налаштовувати змінні середовища: за замовчуванням використовується базовий URL публічного навчального API (`https://car-rental-api.goit.study`), який за потреби можна змінити через `NEXT_PUBLIC_API_URL`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Як користуватися сайтом
+
+1. **Головна сторінка** — цільова сторінка з хедер-зображенням і посиланням на каталог.
+2. **Каталог** (`/catalog`) — перегляд усіх автомобілів або звуження списку через панель фільтрів угорі: виберіть марку, граничну ціну та/або діапазон пробігу (від/до — незалежно один від одного). Натисніть **Search**, щоб застосувати фільтри, або **Clear filters**, щоб скинути. Натисніть **Load more**, щоб підвантажити наступну сторінку без втрати поточних фільтрів.
+3. **Сторінка автомобіля** (`/catalog/[id]`, відкривається через **Read more** на будь-якій картці в новій вкладці) — повний технічний опис, умови оренди та фічі автомобіля, а також форма запиту на бронювання (ім'я, email, коментар). Помилки валідації показуються прямо в полі; успішне надсилання підтверджується тост-повідомленням.
+
+## API
+
+| Функція | Ендпоінт | Використовується в |
+|---|---|---|
+| `fetchCars(params)` | `GET /cars` | Список каталогу + пагінація |
+| `fetchFilters()` | `GET /cars/filters` | Список брендів і діапазон цін для фільтрів |
+| `fetchCarById(id)` | `GET /cars/:id` | Сторінка деталей + її metadata (дедуплікація через `React.cache()`) |
+| `createBookingRequest(carId, body)` | `POST /cars/:carId/booking-requests` | Надсилання форми бронювання |
+
+## План розвитку
+
+- [ ] Адаптивний макет для мобільних пристроїв
+- [ ] Особистий кабінет користувача
+- [ ] Підтримка англійської мови інтерфейсу (мультимовність)
