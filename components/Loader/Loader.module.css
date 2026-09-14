@@ -72,25 +72,52 @@
   opacity: 0;
   animation: roadMove 1s ease-in infinite;
 }
-.roadLines line:nth-child(1) { stroke: var(--blue); animation-delay: 0s; }
-.roadLines line:nth-child(2) { stroke: var(--deep-blue); animation-delay: 0.2s; }
-.roadLines line:nth-child(3) { stroke: var(--blue); animation-delay: 0.4s; }
+.roadLines line:nth-child(1) {
+  stroke: var(--blue);
+  animation-delay: 0s;
+}
+.roadLines line:nth-child(2) {
+  stroke: var(--deep-blue);
+  animation-delay: 0.2s;
+}
+.roadLines line:nth-child(3) {
+  stroke: var(--blue);
+  animation-delay: 0.4s;
+}
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes roadDash {
-  to { stroke-dashoffset: 12; }
+  to {
+    stroke-dashoffset: 12;
+  }
 }
 
 @keyframes roadMove {
-  0%   { transform: translateX(12px); opacity: 0; }
-  20%  { opacity: 1; }
-  70%  { opacity: 1; }
-  100% { transform: translateX(-16px); opacity: 0; }
+  0% {
+    transform: translateX(12px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-16px);
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wheel, .groundDashed, .roadLines line { animation: none; }
+  .wheel,
+  .groundDashed,
+  .roadLines line {
+    animation: none;
+  }
 }

@@ -10,22 +10,23 @@ import css from "./Catalog.module.css";
 import EmptyError from "@/components/EmptyError/EmptyError";
 import FilterForm from "@/components/FilterForm/FilterForm";
 import RefetchOverlay from "@/components/RefetchOverlay/RefetchOverlay";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 const PER_PAGE = 12;
+
+function parseNumberParam(value: string | null): number | undefined {
+  if (!value) return undefined;
+  const parsed = Number(value);
+  return Number.isNaN(parsed) ? undefined : parsed;
+}
 
 export default function Catalog() {
   const searchParams = useSearchParams();
   const filters: CarsQueryParams = {
     brand: searchParams.get("brand") || undefined,
-    price: searchParams.get("price")
-      ? Number(searchParams.get("price"))
-      : undefined,
-    minMileage: searchParams.get("minMileage")
-      ? Number(searchParams.get("minMileage"))
-      : undefined,
-    maxMileage: searchParams.get("maxMileage")
-      ? Number(searchParams.get("maxMileage"))
-      : undefined,
+    price: parseNumberParam(searchParams.get("price")),
+    minMileage: parseNumberParam(searchParams.get("minMileage")),
+    maxMileage: parseNumberParam(searchParams.get("maxMileage")),
   };
 
   const {
@@ -41,7 +42,7 @@ export default function Catalog() {
   } = useInfiniteQuery({
     queryKey: [`carsList`, filters],
     initialPageParam: 1,
-     placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData,
     queryFn: ({ pageParam }) =>
       fetchCars({ ...filters, page: pageParam, perPage: PER_PAGE }),
     getNextPageParam: (lastPage) =>
@@ -52,7 +53,9 @@ export default function Catalog() {
 
   return (
     <section className={css.catalog}>
-      <FilterForm />
+      <div className={css.filterWrapper}>
+        <FilterForm />
+      </div>
 
       <div className={css.listWrapper}>
         {isFetching && <RefetchOverlay />}
@@ -80,15 +83,19 @@ export default function Catalog() {
       </div>
 
       {isSuccess && cars.length > 0 && hasNextPage && (
-        <button
-          onClick={() => fetchNextPage()}
-          type="button"
-          className={css.loadMore}
-          disabled={isFetchingNextPage}
-        >
-          Load more
-        </button>
+        <div className={css.buttonWrapper}>
+          <button
+            onClick={() => fetchNextPage()}
+            type="button"
+            className={css.loadMore}
+            disabled={isFetchingNextPage}
+          >
+            Load more
+          </button>
+        </div>
       )}
+
+      <ScrollToTop />
     </section>
   );
 }

@@ -78,7 +78,7 @@
 }
 
 .mileageMin::placeholder,
-.mileageMax::placeholder  {
+.mileageMax::placeholder {
   color: var(--deep-blue);
 }
 
@@ -102,7 +102,7 @@
 }
 
 .search {
-    border: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +112,7 @@
   height: 44px;
   background-color: var(--blue);
   transition: background-color 0.2s ease;
-  color:  var(--white)
+  color: var(--white);
 }
 
 .search:hover,
@@ -120,22 +120,21 @@
   background-color: var(--blue-accent);
 }
 
-
 .clear {
-    display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: row;
-gap: 4px;
-width: 156px;
-height: 20px;
-border: none;
-background-color: transparent;
-color: var(--grey);
-font-weight: 500;
-font-size: 16px;
-line-height: 1.25;
-transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 4px;
+  width: 156px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  color: var(--grey);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  transition: color 0.2s ease;
 }
 
 .clear:hover,

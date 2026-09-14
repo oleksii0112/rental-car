@@ -62,34 +62,34 @@ export default function FilterForm() {
   }
 
   const brandItems =
-        options?.brands.map((brand) => ({ value: brand, label: brand })) ?? [];
-    
+    options?.brands.map((brand) => ({ value: brand, label: brand })) ?? [];
+
   const priceItems = priceOptions.map((price) => ({
     value: String(price),
     label: String(price),
   }));
-    
-    const validateMileage = (values: FilterFormValues) => {
-      const errors: { minMileage?: string; maxMileage?: string } = {};
-      const message = "Введіть число\nвід 0 до 999.999";
 
-      const min = values.minMileage === "" ? null : Number(values.minMileage);
-      const max = values.maxMileage === "" ? null : Number(values.maxMileage);
+  const validateMileage = (values: FilterFormValues) => {
+    const errors: { minMileage?: string; maxMileage?: string } = {};
+    const message = "Введіть число\nвід 0 до 999.999";
 
-      if (min !== null && (min < 0 || min > 999999)) {
-        errors.minMileage = message;
-      }
-      if (max !== null && (max < 0 || max > 999999)) {
-        errors.maxMileage = message;
-      }
-      if (min !== null && max !== null && min > max) {
-        errors.minMileage = message;
-        errors.maxMileage = message;
-      }
+    const min = values.minMileage === "" ? null : Number(values.minMileage);
+    const max = values.maxMileage === "" ? null : Number(values.maxMileage);
 
-      return errors;
-    };
-    
+    if (min !== null && (min < 0 || min > 999999)) {
+      errors.minMileage = message;
+    }
+    if (max !== null && (max < 0 || max > 999999)) {
+      errors.maxMileage = message;
+    }
+    if (min !== null && max !== null && min > max) {
+      errors.minMileage = message;
+      errors.maxMileage = message;
+    }
+
+    return errors;
+  };
+
   return (
     <div className={css.formContainer}>
       <Formik
@@ -152,8 +152,15 @@ export default function FilterForm() {
                     />
                   </div>
                   <div className={css.mileageField}>
+                    <label
+                      className={css.visuallyHidden}
+                      htmlFor={`${fieldId}-mileage-max`}
+                    >
+                      Car mileage to
+                    </label>
                     <Field
                       className={css.mileageMax}
+                      id={`${fieldId}-mileage-max`}
                       type="number"
                       name="maxMileage"
                       placeholder="To"

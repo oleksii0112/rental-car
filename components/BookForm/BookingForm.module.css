@@ -11,56 +11,66 @@
 }
 
 .container {
-    width: 640px;
-    height: 424px;
-    padding: 32px;
-    border-radius: 16px;
-    background-color: var(--white);
-    display: flex;
-    flex-direction: column;
-    gap: 24px
+  width: 640px;
+  flex: 1;
+  min-height: 0;
+  padding: 32px;
+  border-radius: 16px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .fieldset {
-    border: none;
+  border: none;
 }
 
 .titleWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .title {
-    font-weight: 600;
-font-size: 20px;
-line-height: 1.2;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .description {
-    font-weight: 500;
-font-size: 16px;
-line-height: 1.25;
-color: var(--grey);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--grey);
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 24px;
 }
 
 .fieldset {
-    border: none;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 16px;
 }
 
 .fieldWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.fieldWrapperGrow {
+  flex: 1;
+  min-height: 0;
 }
 
 .floatingLabel {
@@ -84,21 +94,21 @@ color: var(--grey);
 }
 
 .field {
-    display: flex;
-    border: 1px solid transparent;
-    border-radius: 12px;
-padding: 12px 20px;
-width: 576px;
-height: 48px;
-font-weight: 500;
-font-size: 16px;
-line-height: 1.25;
-background-color: var(--background-milk);
-align-items: center;
+  display: flex;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 20px;
+  width: 576px;
+  height: 48px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  background-color: var(--background-milk);
+  align-items: center;
 }
 
 .field::placeholder {
-    color: var(--grey)
+  color: var(--grey);
 }
 
 .fieldError {
@@ -122,35 +132,34 @@ align-items: center;
 }
 
 .button {
-    display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 12px;
-padding: 12px 99px;
-width: 576px;
-height: 44px;
-background: var(--blue);
-color: var(--white);
-font-weight: 600;
-font-size: 16px;
-line-height: 1.25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 12px 99px;
+  width: 576px;
+  height: 44px;
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 .textarea {
   resize: none;
-  height: 88px;
+  flex: 1;
+  min-height: 40px;
 }
 
 .field:hover.fieldError,
 .field:focus.fieldError {
-    outline: none;
-    border-color:#ec383b;
+  outline: none;
+  border-color: #ec383b;
 }
 
 .field:hover,
 .field:focus {
-    outline: none;
-    border-color: var(--grey-accent)
+  outline: none;
+  border-color: var(--grey-accent);
 }
-
-

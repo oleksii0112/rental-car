@@ -21,10 +21,10 @@ export default function CarCard({ car }: CarCardProps) {
       </div>
       <div className={css.cardContent}>
         <div className={css.cardTitleWrapper}>
-          <p className={css.cardTitle}>
+          <h3 className={css.cardTitle}>
             {car.brand} <span className={css.model}>{car.model}</span>,{" "}
             {car.year}
-          </p>
+          </h3>
           <p className={css.price}>${car.rentalPrice}</p>
         </div>
         <div className={css.cardInfoWrapper}>

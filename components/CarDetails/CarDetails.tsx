@@ -17,7 +17,7 @@ export default function CarDetails({ car }: CarDetailsProps) {
             <p className={css.article}>Article: {car.stockNumber}</p>
           </div>
           <div className={css.locationWrapper}>
-            <svg className={css.svg} height="16" width="16" aria-label="hidden">
+            <svg className={css.svg} height="16" width="16" aria-hidden="true">
               <use href="/sprite.svg#location"></use>
             </svg>
             <p className={css.location}>
@@ -30,19 +30,21 @@ export default function CarDetails({ car }: CarDetailsProps) {
         <div className={css.bottomBlockWrapper}>
           <div className={css.blockWrap}>
             <h3 className={css.title}>Rental Conditions:</h3>
-            {car.rentalConditions.map((rentalCondition) => (
-              <div className={css.descriptionWrapper} key={rentalCondition}>
-                <svg
-                  className={css.svg}
-                  width="16"
-                  height="16"
-                  aria-hidden="true"
-                >
-                  <use href="/sprite.svg#checkmark"></use>
-                </svg>
-                <p className={css.description}>{rentalCondition}</p>
-              </div>
-            ))}
+            <ul className={css.list}>
+              {car.rentalConditions.map((rentalCondition) => (
+                <li className={css.descriptionWrapper} key={rentalCondition}>
+                  <svg
+                    className={css.svg}
+                    width="16"
+                    height="16"
+                    aria-hidden="true"
+                  >
+                    <use href="/sprite.svg#checkmark"></use>
+                  </svg>
+                  <p className={css.description}>{rentalCondition}</p>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className={css.blockWrap}>
@@ -108,20 +110,21 @@ export default function CarDetails({ car }: CarDetailsProps) {
 
           <div className={css.blockWrap}>
             <h3 className={css.title}>Features</h3>
-
-            {car.features.map((feature) => (
-              <div className={css.descriptionWrapper} key={feature}>
-                <svg
-                  className={css.svg}
-                  width="16"
-                  height="16"
-                  aria-hidden="true"
-                >
-                  <use href="/sprite.svg#checkmark"></use>
-                </svg>
-                <p className={css.description}>{feature}</p>
-              </div>
-            ))}
+            <ul className={css.list}>
+              {car.features.map((feature) => (
+                <li className={css.descriptionWrapper} key={feature}>
+                  <svg
+                    className={css.svg}
+                    width="16"
+                    height="16"
+                    aria-hidden="true"
+                  >
+                    <use href="/sprite.svg#checkmark"></use>
+                  </svg>
+                  <p className={css.description}>{feature}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

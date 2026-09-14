@@ -8,7 +8,9 @@ export default function RefetchOverlay() {
       <div className={css.card}>
         <Loader />
         <p className={css.description}>
-          Please wait while we fetch the best cars for you
+          Please wait while we fetch the best
+          <br />
+          cars for you
         </p>
       </div>
     </>

@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   width: 528px;
+  background-color: var(--white);
+  border-radius: 16px;
 }
 
 .mainInfoWrapper {
@@ -40,48 +42,55 @@
 }
 
 .description {
-    font-weight: 500;
-font-size: 16px;
-line-height: 1.25;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 .locationWrapper {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    margin-bottom: 16px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .titleArticleWrapper {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    margin-bottom: 8px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .title {
-    font-weight: 600;
-font-size: 20px;
-line-height: 1.2;
-margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 4px;
 }
 
 .descriptionWrapper {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .blockWrap {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .bottomBlockWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 48px
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 .blockWrap:not(:last-child) {

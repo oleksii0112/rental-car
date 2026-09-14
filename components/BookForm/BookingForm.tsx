@@ -28,7 +28,10 @@ const Schema = Yup.object().shape({
     .trim()
     .email("Invalid email")
     .required("Please enter your email."),
-  comment: Yup.string().trim().required("Comment is required"),
+  comment: Yup.string()
+    .trim()
+    .min(20, "Minimum 20 characters")
+    .required("Comment is required"),
 });
 
 export default function BookingForm({ carId }: BookingFormProps) {
@@ -47,7 +50,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
       }),
     onSuccess: () => {
       toast.success(
-        "Booked! Thank you for your trusting. We will contact you soon.",
+        "Booked! Thank you for your trust. We will contact you soon.",
       );
     },
     onError: () => {
@@ -112,11 +115,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
                     <use href="/sprite.svg#error"></use>
                   </svg>
                 )}
-                <ErrorMessage
-                  name="name"
-                  component="p"
-                  className={css.error}
-                />
+                <ErrorMessage name="name" component="p" className={css.error} />
               </div>
 
               <label
@@ -163,7 +162,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
               >
                 Comment
               </label>
-              <div className={css.fieldWrapper}>
+              <div className={`${css.fieldWrapper} ${css.fieldWrapperGrow}`}>
                 {errors.comment && touched.comment && (
                   <span className={css.floatingLabel} aria-hidden="true">
                     Comment*

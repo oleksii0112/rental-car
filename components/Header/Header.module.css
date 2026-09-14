@@ -1,13 +1,13 @@
 .header {
-    width: 100%;
-    min-width: 320px;
-    height: 68px;
-    display: flex;
-    padding: 0 clamp(16px, 8.33vw, 120px);
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--white);
-    border-bottom: 1px solid var(--white-border);
+  width: 100%;
+  min-width: 320px;
+  height: 68px;
+  display: flex;
+  padding: 0 clamp(16px, 8.33vw, 120px);
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--white-border);
 }
 
 .nav {
@@ -17,12 +17,12 @@
 
 .navigation {
   height: 100%;
-    display: flex;
-    align-items: stretch;
-    gap: 32px;
-    margin: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  margin: 0;
   padding: 0;
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .navigation li {
@@ -58,18 +58,18 @@
   color: var(--deep-blue);
   text-decoration: underline;
   text-decoration-color: transparent;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
-
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
 }
 
 .home:hover,
 .home:focus,
 .catalog:hover,
 .catalog:focus {
-  text-decoration-color:  var(--blue);
   text-decoration-skip-ink: none;
+  text-decoration-color: var(--blue);
   color: var(--blue);
-  
 }
 
 .isActive {

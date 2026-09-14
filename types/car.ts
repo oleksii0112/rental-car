@@ -42,9 +42,9 @@ export interface CarsServerResponse {
 }
 
 export interface BookingCarParams {
-  name: string;
-  email: string;
-  comment: string;
+    name: string;
+    email: string;
+    comment: string;
 }
 
 
