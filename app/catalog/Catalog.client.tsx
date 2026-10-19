@@ -35,6 +35,7 @@ export default function Catalog() {
     isError,
     isSuccess,
     isFetching,
+    isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -58,7 +59,7 @@ export default function Catalog() {
       </div>
 
       <div className={css.listWrapper}>
-        {isFetching && <RefetchOverlay />}
+        {isFetching && <RefetchOverlay fullPage={isLoading} />}
 
         {isError && (
           <div className={css.stateWrapper} role="alert">

@@ -5,18 +5,25 @@
   background-color: rgba(245, 245, 245, 0.89);
 }
 
+/* First load: the list is still empty, so a dim inside the list wrapper would
+   have no height. Cover the whole page below the header instead. */
+.dimFullPage {
+  position: fixed;
+  top: var(--header-height, 68px);
+}
+
 .card {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
-  width: 543px;
-  height: 288px;
+  width: min(543px, calc(100% - 32px));
+  min-height: 288px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 96px;
+  padding: 48px clamp(16px, 8vw, 96px);
   gap: 16px;
   background-color: var(--white);
   border-radius: 16px;
@@ -30,9 +37,22 @@
 }
 
 .description {
-  width: 351px;
+  width: 100%;
+  max-width: 351px;
   text-align: center;
+  text-wrap: balance;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
+}
+
+/* The forced line break only fits when the card has its full 543px width. */
+.description br {
+  display: none;
+}
+
+@media screen and (min-width: 576px) {
+  .description br {
+    display: inline;
+  }
 }

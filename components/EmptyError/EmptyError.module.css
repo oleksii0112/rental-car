@@ -1,5 +1,5 @@
 .container {
-  width: 413px;
+  width: min(413px, calc(100% - 32px));
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -9,8 +9,8 @@
 }
 
 .imgWrapper {
-  width: 413px;
-  height: 388px;
+  width: 100%;
+  aspect-ratio: 413 / 388;
   position: relative;
 }
 

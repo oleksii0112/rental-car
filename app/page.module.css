@@ -6,34 +6,46 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.2);
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 45%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.78), transparent 60%);
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
 .content {
+  min-width: 320px;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 160px;
+  min-height: calc(100dvh - 68px);
+  justify-content: space-between;
+  padding: 32px clamp(16px, 6vw, 32px)
+    calc(48px + clamp(0px, (100dvh - 800px) * 0.5, 100px));
   position: relative;
   z-index: 2;
+  margin-inline: auto;
 }
 
 .title {
+  text-wrap: balance;
   font-weight: 700;
-  font-size: 60px;
+  font-size: clamp(32px, 9vw, 60px);
   line-height: 1.2;
   text-align: center;
   color: var(--white);
-  margin-bottom: 16px;
+}
+
+.descriptionWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .description {
@@ -42,10 +54,12 @@
   line-height: 1.33;
   text-align: center;
   color: var(--white);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .button {
+  width: 100%;
+  max-width: 320px;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
@@ -55,11 +69,84 @@
   justify-content: center;
   background-color: var(--blue);
   border-radius: 12px;
-  padding: 12px 99px;
+  padding: 12px 0;
   transition: background-color 0.2s ease;
 }
 
 .button:hover,
 .button:focus {
   background-color: var(--blue-accent);
+}
+
+.image {
+  object-fit: cover;
+  object-position: 40% center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.title,
+.description {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    min-width: 0;
+    max-width: 768px;
+    justify-content: flex-end;
+    padding-inline: clamp(16px, 8.33vw, 120px);
+    padding-bottom: calc(48px + clamp(0px, (100dvh - 1100px) * 0.3, 80px));
+  }
+
+  .title {
+    font-size: 60px;
+    margin-bottom: 32px;
+  }
+
+  .description {
+    font-size: 32px;
+    margin-bottom: 15px;
+    max-width: 500px;
+  }
+
+  .button {
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .image {
+    object-position: 50% center;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .overlay {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent 35%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 45%);
+  }
+
+  .content {
+    max-width: none;
+    padding-bottom: calc(60px + clamp(0px, (100dvh - 1100px) * 0.45, 260px));
+  }
+
+  .title {
+    font-size: 80px;
+  }
+
+  .description {
+    max-width: none;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 3200px) {
+  .title,
+  .descriptionWrapper {
+    zoom: 1.5;
+  }
 }

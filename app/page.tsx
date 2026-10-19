@@ -10,18 +10,21 @@ export default function Home() {
         alt="White Maserati GranTurismo under sunlight"
         fill
         priority
-        sizes="100vw"
-        style={{ objectFit: "cover" }}
+        sizes="(max-aspect-ratio: 1/1) 207vh, 100vw"
+        className={css.image}
       />
       <div className={css.overlay} />
       <div className={css.content}>
         <h1 className={css.title}>Find your perfect rental car</h1>
-        <p className={css.description}>
-          Reliable and budget-friendly rentals for any journey
-        </p>
-        <Link className={css.button} href="/catalog">
-          View Catalog
-        </Link>
+        <div className={css.descriptionWrapper}>
+          <p className={css.description}>
+            Reliable and <span className={css.nowrap}>budget-friendly</span>{" "}
+            rentals <span className={css.nowrap}>for any journey</span>
+          </p>
+          <Link className={css.button} href="/catalog">
+            View Catalog
+          </Link>
+        </div>
       </div>
     </section>
   );
