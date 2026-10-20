@@ -15,7 +15,7 @@ export default function CarCard({ car }: CarCardProps) {
           src={car.img}
           alt={`${car.brand} ${car.model}`}
           fill
-          sizes="244px"
+          sizes="335px"
           style={{ objectFit: "cover" }}
         ></Image>
       </div>

@@ -15,7 +15,7 @@ export default function EmptyError() {
           src="/error.png"
           alt="A car under a loupe"
           fill
-          sizes="413px"
+          sizes="(min-width: 445px) 413px, calc(100vw - 32px)"
           style={{ objectFit: "cover" }}
         />
       </div>

@@ -63,7 +63,7 @@ export default async function Details({ params }: PageProps<"/catalog/[id]">) {
             alt={`${car.brand} ${car.model}`}
             fill
             priority
-            sizes="(max-width: 1200px) calc(100vw - 560px), 640px"
+            sizes="(min-width: 3200px) and (min-height: 1900px) 960px, (min-width: 1280px) 640px, (min-width: 768px) 340px, (min-width: 425px) 393px, calc(100vw - 32px)"
             style={{ objectFit: "cover" }}
           />
         </div>

@@ -1,23 +1,81 @@
 .container {
-  display: grid;
-  align-items: stretch;
-  padding: 0;
-  margin: 84px auto;
-  max-width: 1200px;
-  grid-template-columns: 640px 528px;
-  gap: 32px;
+  width: 100%;
+  max-width: 425px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  margin: 12px auto;
+  gap: 12px;
 }
 
 .leftColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  display: contents;
+}
+
+.leftColumn > :first-child {
+  order: 1;
+}
+
+.container > :last-child {
+  order: 2;
+}
+
+.leftColumn > :last-child {
+  order: 3;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 640 / 512;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 768px;
+    max-width: none;
+    padding: 32px;
+    margin: auto;
+    gap: 24px;
+  }
+
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .imageWrapper {
+    border-radius: 12px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0;
+    margin: 84px auto;
+    grid-template-columns: 640px 528px;
+    gap: 32px;
+  }
+
+  .leftColumn {
+    gap: 32px;
+  }
+
+  .imageWrapper {
+    border-radius: 16px;
+  }
+}
+
+/* 4K at 100% OS scale: scale the whole island 1.5x (same trick as the home hero) */
+@media screen and (min-width: 3200px) and (min-height: 1900px) {
+  .container {
+    zoom: 1.5;
+  }
 }
